@@ -1,0 +1,22 @@
+{
+    "EAApi Service": {
+        "prefix": [
+            "service",
+        ],
+        "body": [
+            "import { Injectable, Inject } from \"@nestjs/common\";",
+            "import { Repository } from \"typeorm;\"",
+            "import { BaseService } from \"@eaapi/abstracts/base.service\";",
+            "@Injectable()",
+            "export class ${1:EntityName}Service extends BaseService<${1:EntityName}> {",
+            "  constructor(",
+            "    @Inject(\"${1:EntityName}-Repository\")",
+            "    protected readonly repository: Repository<${1:EntityName}>",
+            "  ) {",
+            "    super(repository);",
+            "  }",
+            "}"
+        ],
+        "description": "A for loop."
+    }
+}
