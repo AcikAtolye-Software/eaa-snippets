@@ -5,7 +5,7 @@
         ],
         "body": [
             "import { Injectable, Inject } from \"@nestjs/common\";",
-            "import { Repository } from \"typeorm;\"",
+            "import { Repository } from \"typeorm\";",
             "import { BaseService } from \"@eaapi/abstracts/base.service\";",
             "@Injectable()",
             "export class ${1:EntityName}Service extends BaseService<${1:EntityName}> {",
@@ -17,6 +17,79 @@
             "  }",
             "}"
         ],
-        "description": "A for loop."
-    }
+        "description": "A EAApi Service"
+    },
+    "EAApi Controller": {
+        "prefix": [
+            "controller",
+        ],
+        "body": [
+            "import { Controller, UseGuards } from \"@nestjs/common\";",
+            "import { BaseController } from \"@eaapi/abstracts/base.controller\";",
+            "import { AccessTokenGuard } from \"@eaapi/common/guards/accessToken.guard\";",
+            "@Controller(\"${2:}\")",
+            "@UseGuards(AccessTokenGuard)",
+            "export class ${1:EntityName}Controller extends BaseController<${1:EntityName}, any, any> {",
+            "  constructor(readonly service: ${1:EntityName}Service) {",
+            "    super(service);",
+            "  }",
+            "}"
+        ],
+        "description": "A EAApi Controller"
+    },
+    "EAApi Module": {
+        "prefix": [
+            "module",
+        ],
+        "body": [
+            "import { ConfigModule } from \"@nestjs/config\";",
+            "import { Module } from \"@nestjs/common/decorators\";",
+            "import { DatabaseModule } from \"@eaapi/modules/core/database/database.module\";",
+            "import { getRepositories } from \"@eaapi/modules/core/database/repository.provider\";",
+            "import { sortControllers } from \"@eaapi/helpers/module.helper\";",
+            "@Module({",
+            "    imports: [",
+            "      ConfigModule.forRoot(), // .env dosyasındaki verileri kullanabilmek için",
+            "      DatabaseModule,",
+            "    ],",
+            "    controllers: sortControllers([",
+            "      ${1:EntityName}Controller,",
+            "    ]),",
+            "    providers: [",
+            "      ...getRepositories([${1:EntityName}]),",
+            "      ${1:EntityName}Service,",
+            "    ],",
+            "    exports: [],",
+            "  })",
+            "export class ${1:EntityName}Module {}"
+        ],
+        "description": "A EAApi Module"
+    },
+    
+    "EAApi Entity Extends BaseModel ": {
+        "prefix": [
+            "BaseModel",
+        ],
+        "body": [
+            "import { Column, Entity, ManyToOne } from \"typeorm\";",
+            "import { BaseModel } from \"@eaapi/abstracts/entity/base.model\";",
+            "@Entity()",
+            "export class ${1:EntityName} extends BaseModel {",
+            "}"
+        ],
+        "description": "A EAApi Entity Extends BaseModel"
+    },
+    "EAApi Entity Extends Type ": {
+        "prefix": [
+            "Type", "TypeModel"
+        ],
+        "body": [
+            "import { Column, Entity, ManyToOne } from \"typeorm\";",
+            "import { Type } from \"@eaapi/abstracts/entity/type.model\";",
+            "@Entity()",
+            "export class ${1:EntityName} extends Type {",
+            "}"
+        ],
+        "description": "A EAApi Entity Extends BaseModel"
+    },
 }

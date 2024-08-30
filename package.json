@@ -16,5 +16,10 @@
         "path": "./snippets/snippets.code-snippets"
       }
     ]
+  },
+  "icon": "aa-logo-1.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AcikAtolye-Software/eaapi-snippets.git"
   }
 }

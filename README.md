@@ -7,3 +7,10 @@ Bu Açık Atolye adına Emre Aydemir tarafından geliştirilmiş EAApi konsepti 
 service: temel servis kodu üretir
 controller: temel controller kodu üretir
 module: temel module kodu üretir
+
+## Derleme ve kurulum
+
+```bash
+vsce package
+code --install-extension eaapi-snippets-0.0.1.vsix
+```
