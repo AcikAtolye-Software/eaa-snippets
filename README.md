@@ -12,5 +12,5 @@ module: temel module kodu üretir
 
 ```bash
 vsce package
-code --install-extension eaapi-snippets-0.0.1.vsix
+code --install-extension eaa-snippets-0.0.1.vsix
 ```

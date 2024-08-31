@@ -1,0 +1,155 @@
+{
+    "EAAdmin Base Model-Schema": {
+        "prefix": [
+            "baseModelSchema",
+        ],
+        "body": [
+            "import * as Yup from 'yup';",
+            "import { requiredMessage, baseModelBody } from 'eaadmin';",
+            "export const ${1:EntityName}Schema = Yup.object(",
+            "    {",
+            "      ${2:}",
+            "    ...baseModelBody",
+            "    }",
+            ");",
+            "export type ${1:EntityName} = Yup.InferType<typeof ${1:EntityName}Schema>;"
+        ],
+        "description": "A EAAdmin Base Model-Schema"
+    },
+    "EAAdmin Type Model-Schema": {
+        "prefix": [
+            "typeModelSchema",
+        ],
+        "body": [
+            "import * as Yup from 'yup';",
+            "import { requiredMessage, typeModelBody } from 'eaadmin';",
+            "export const ${1:EntityName}Schema = Yup.object(",
+            "    {",
+            "      ${2:}",
+            "    ...typeModelBody",
+            "    }",
+            ");",
+            "export type ${1:EntityName} = Yup.InferType<typeof ${1:EntityName}Schema>;"
+        ],
+        "description": "A EAAdmin Type Model-Schema"
+    },
+    "EAAdmin required Variable on Schema": {
+        "prefix": [
+            "requiredVariable",
+        ],
+        "body": [
+            "${1:variableName}: Yup.${2:type}().required(requiredMessage).default(${3:defaultValue}),",
+        ],
+        "description": "A EAAdmin required Variable on Schema"
+    },
+    "EAAdmin nullable Variable on Schema": {
+        "prefix": [
+            "nullableVariable",
+        ],
+        "body": [
+            "${1:variableName}: Yup.${2:type}().nullable(),",
+        ],
+        "description": "A EAAdmin nullable Variable on Schema"
+    },
+    "EAAdmin select Type Variable on Schema": {
+        "prefix": [
+            "selectTypeVariable",
+        ],
+        "body": [
+            "${1:variableName}: Yup.object().shape({",
+            "    id: Yup.number().required(requiredMessage).default(0),",
+            "    name: Yup.string().nullable(),",
+            "}).required(requiredMessage),"
+        ],
+        "description": "A EAAdmin nullable Variable on Schema"
+    },
+    "Form Column Element": {
+        "prefix": [
+            "formColumnElement",
+        ],
+        "body": [
+            "{",
+            "    name: \"${1:LabelText}\", uid: \"${2:variableName}\",",
+            "    placeHolder: \"\",",
+            "    type: \"text\",",
+            "    element: \"input\",",
+            "    sortable: true,",
+            "    formShow: true,",
+            "    tableShow: true",
+            "},"
+        ],
+        "description": "A EAAdmin formColumnElement"
+    },
+    "EAAdmin Type View Model": {
+        "prefix": [
+            "TypeViewModel",
+        ],
+        "body": [
+            "import { BaseViewModel, typeColumns, typeVisibleColumns } from 'eaadmin';",
+            "import { FormColumnElementProps } from 'eaadmin';",
+            "export default class ${1:Entity}ViewModel extends BaseViewModel<${1:Entity}> {",
+            "    getFormTitle = (): string => {",
+            "        return \"${1:Entity}\"",
+            "    }",
+            "    getDetailPageUrl = (value: ${1:Entity}): string => {",
+            "        return `/${2:PathBase}/${value.id}`",
+            "    }",
+            "",
+            "    columns: FormColumnElementProps[] = [",
+            "        ...typeColumns,",
+            "    ]",
+            "",
+            "    initialVisibleColumns: string[] = [",
+            "        ...typeVisibleColumns,",
+            "    ]",
+            "}"
+        ],
+        "description": "A EAAdmin Type View Model"
+    },
+    "EAAdmin Base View Model": {
+        "prefix": [
+            "BaseViewModel",
+        ],
+        "body": [
+            "import { BaseViewModel, idColumn, typeVisibleColumns } from 'eaadmin';",
+            "import { FormColumnElementProps } from 'eaadmin';",
+            "export default class ${1:Entity}ViewModel extends BaseViewModel<${1:Entity}> {",
+            "    getFormTitle = (): string => {",
+            "        return \"${1:Entity}\"",
+            "    }",
+            "    getDetailPageUrl = (value: ${1:Entity}): string => {",
+            "        return `/${2:PathBase}/${value.id}`",
+            "    }",
+            "",
+            "    columns: FormColumnElementProps[] = [",
+            "        idColumn,",
+            "        ${3:},",
+            "    ]",
+            "",
+            "    initialVisibleColumns: string[] = [",
+            "        \"id\", ${4:},",
+            "    ]",
+            "}"
+        ],
+        "description": "A EAAdmin Base View Model"
+    },
+    "EAAdmin Base Service": {
+        "prefix": [
+            "BaseService",
+        ],
+        "body": [
+            "import { BaseService } from 'eaadmin';",
+            "",
+            "export class ${1:Entity}Service extends BaseService<${1:Entity}> {",
+            "    url(): string {",
+            "        return \"/api/v2/${2:path}\";",
+            "    }",
+            "",
+            "    getRelations = (): string | null => {",
+            "        return \"${3:relations}\"; // relation-one,relations-two,relations-three",
+            "    }",
+            "}",
+        ],
+        "description": "A EAAdmin Base Service"
+    },
+}

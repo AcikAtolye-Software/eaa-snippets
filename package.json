@@ -1,7 +1,7 @@
 {
-  "name": "eaapi-snippets",
-  "displayName": "eaapi snippets",
-  "description": "EAApi Code Creator Snippets",
+  "name": "eaa-snippets",
+  "displayName": "eaa snippets",
+  "description": "EAA Code Creator Snippets",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.92.0"
@@ -13,7 +13,11 @@
     "snippets": [
       {
         "language": "typescript",
-        "path": "./snippets/snippets.code-snippets"
+        "path": "./snippets/eaapi.code-snippets"
+      },
+      {
+        "language": "typescript",
+        "path": "./snippets/eaadmin.code-snippets"
       }
     ]
   },
