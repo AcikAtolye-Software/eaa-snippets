@@ -135,7 +135,7 @@
         ],
         "body": [
             "import { BaseService } from \"@eaadmin\";",
-            "import { apiBase } from \"@/eaadmin/src/constants/api\";",
+            "import { apiBase } from \"@eaadmin\";",
             "",
             "export class ${1:Entity}Service extends BaseService<${1:Entity}> {",
             "    url(): string {",
