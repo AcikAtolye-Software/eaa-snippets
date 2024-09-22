@@ -1,11 +1,11 @@
 {
     "EAAdmin Base Model-Schema": {
         "prefix": [
-            "baseModelSchema",
+            "bms","baseModelSchema",
         ],
         "body": [
-            "import * as Yup from 'yup';",
-            "import { requiredMessage, baseModelBody } from 'eaadmin';",
+            "import * as Yup from \"yup\";",
+            "import { requiredMessage, baseModelBody } from \"@eaadmin\";",
             "export const ${1:EntityName}Schema = Yup.object(",
             "    {",
             "      ${2:}",
@@ -18,11 +18,11 @@
     },
     "EAAdmin Type Model-Schema": {
         "prefix": [
-            "typeModelSchema",
+            "tms","typeModelSchema",
         ],
         "body": [
-            "import * as Yup from 'yup';",
-            "import { requiredMessage, typeModelBody } from 'eaadmin';",
+            "import * as Yup from \"yup\";",
+            "import { requiredMessage, typeModelBody } from \"@eaadmin\";",
             "export const ${1:EntityName}Schema = Yup.object(",
             "    {",
             "      ${2:}",
@@ -35,7 +35,7 @@
     },
     "EAAdmin required Variable on Schema": {
         "prefix": [
-            "requiredVariable",
+            "requiredVariable","rv"
         ],
         "body": [
             "${1:variableName}: Yup.${2:type}().required(requiredMessage).default(${3:defaultValue}),",
@@ -44,7 +44,7 @@
     },
     "EAAdmin nullable Variable on Schema": {
         "prefix": [
-            "nullableVariable",
+            "nullableVariable","nv"
         ],
         "body": [
             "${1:variableName}: Yup.${2:type}().nullable(),",
@@ -53,7 +53,7 @@
     },
     "EAAdmin select Type Variable on Schema": {
         "prefix": [
-            "selectTypeVariable",
+            "selectTypeVariable","sv"
         ],
         "body": [
             "${1:variableName}: Yup.object().shape({",
@@ -65,7 +65,7 @@
     },
     "Form Column Element": {
         "prefix": [
-            "formColumnElement",
+            "formColumnElement","fce"
         ],
         "body": [
             "{",
@@ -82,11 +82,11 @@
     },
     "EAAdmin Type View Model": {
         "prefix": [
-            "TypeViewModel",
+            "TypeViewModel","tvm"
         ],
         "body": [
-            "import { BaseViewModel, typeColumns, typeVisibleColumns } from 'eaadmin';",
-            "import { FormColumnElementProps } from 'eaadmin';",
+            "import { BaseViewModel, typeColumns, typeVisibleColumns } from \"@eaadmin\";",
+            "import { getVisibleColumns, FormColumnElementProps } from \"@eaadmin\";",
             "export default class ${1:Entity}ViewModel extends BaseViewModel<${1:Entity}> {",
             "    getFormTitle = (): string => {",
             "        return \"${1:Entity}\"",
@@ -99,20 +99,18 @@
             "        ...typeColumns,",
             "    ]",
             "",
-            "    initialVisibleColumns: string[] = [",
-            "        ...typeVisibleColumns,",
-            "    ]",
+            "    initialVisibleColumns: string[] = getVisibleColumns(this.columns)",
             "}"
         ],
         "description": "A EAAdmin Type View Model"
     },
     "EAAdmin Base View Model": {
         "prefix": [
-            "BaseViewModel",
+            "BaseViewModel","bvm"
         ],
         "body": [
-            "import { BaseViewModel, idColumn, typeVisibleColumns } from 'eaadmin';",
-            "import { FormColumnElementProps } from 'eaadmin';",
+            "import { BaseViewModel, idColumn, typeVisibleColumns } from \"@eaadmin\";",
+            "import { FormColumnElementProps } from \"@eaadmin\";",
             "export default class ${1:Entity}ViewModel extends BaseViewModel<${1:Entity}> {",
             "    getFormTitle = (): string => {",
             "        return \"${1:Entity}\"",
@@ -126,23 +124,22 @@
             "        ${3:},",
             "    ]",
             "",
-            "    initialVisibleColumns: string[] = [",
-            "        \"id\", ${4:},",
-            "    ]",
+            "    initialVisibleColumns: string[] = getVisibleColumns(this.columns)",
             "}"
         ],
         "description": "A EAAdmin Base View Model"
     },
     "EAAdmin Base Service": {
         "prefix": [
-            "BaseService",
+            "service","s"
         ],
         "body": [
-            "import { BaseService } from 'eaadmin';",
+            "import { BaseService } from \"@eaadmin\";",
+            "import { apiBase } from \"@/eaadmin/src/constants/api\";",
             "",
             "export class ${1:Entity}Service extends BaseService<${1:Entity}> {",
             "    url(): string {",
-            "        return \"/api/v2/${2:path}\";",
+            "        return apiBase()+\"/${2:path}\";",
             "    }",
             "",
             "    getRelations = (): string | null => {",

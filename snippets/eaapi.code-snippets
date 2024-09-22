@@ -1,7 +1,7 @@
 {
     "EAApi Service": {
         "prefix": [
-            "service",
+            "service","s"
         ],
         "body": [
             "import { Injectable, Inject } from \"@nestjs/common\";",
@@ -21,7 +21,7 @@
     },
     "EAApi Controller": {
         "prefix": [
-            "controller",
+            "controller","c"
         ],
         "body": [
             "import { Controller, UseGuards } from \"@nestjs/common\";",
@@ -50,7 +50,7 @@
     },
     "EAApi Module": {
         "prefix": [
-            "module",
+            "module","m"
         ],
         "body": [
             "import { ConfigModule } from \"@nestjs/config\";",
@@ -79,7 +79,7 @@
     
     "EAApi Entity Extends BaseModel ": {
         "prefix": [
-            "BaseModel",
+            "BaseModel","bm"
         ],
         "body": [
             "import { Column, Entity, ManyToOne } from \"typeorm\";",
@@ -92,7 +92,7 @@
     },
     "EAApi Entity Extends Type ": {
         "prefix": [
-            "Type", "TypeModel"
+            "Type", "TypeModel", "tm", "t"
         ],
         "body": [
             "import { Column, Entity, ManyToOne } from \"typeorm\";",
