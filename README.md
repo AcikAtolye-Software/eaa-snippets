@@ -30,6 +30,6 @@ Bu proje, Açık Atölye adına Emre Aydemir tarafından geliştirilen EAApi kon
 EAAPI Snippet paketi Visual Studio Code'a kolayca entegre edilebilir. Aşağıdaki komutları kullanarak paketi derleyebilir ve kurabilirsiniz:
 
 ```bash
-vsce package
+npx vsce package
 code --install-extension eaa-snippets-0.0.1.vsix
 ```
