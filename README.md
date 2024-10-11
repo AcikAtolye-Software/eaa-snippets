@@ -12,6 +12,10 @@ Bu proje, Açık Atölye adına Emre Aydemir tarafından geliştirilen EAApi kon
 - **module** (`m`): Temel module kodu oluşturur.
 - **BaseModel** (`bm`): `BaseModel` sınıfını kalıtım alan bir entity oluşturur.
 - **TypeModel** (`tm`): `TypeModel` sınıfını kalıtım alan bir entity oluşturur.
+- **column** (`column`): Bir typeorm column oluşturur
+- **manytoone** (`mto`): Bir manytoone ilişki oluşturur
+- **onetomany** (`otm`): Bir onetomany ilişki oluştur
+- **onetoone** (`otm`): Bir onetoone ilişki oluştur
 
 ### EAAdmin Snippet'leri
 

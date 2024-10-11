@@ -1,7 +1,8 @@
 {
     "EAApi Service": {
         "prefix": [
-            "service","s"
+            "service",
+            "s"
         ],
         "body": [
             "import { Injectable, Inject } from \"@nestjs/common\";",
@@ -21,7 +22,8 @@
     },
     "EAApi Controller": {
         "prefix": [
-            "controller","c"
+            "controller",
+            "c"
         ],
         "body": [
             "import { Controller, UseGuards } from \"@nestjs/common\";",
@@ -44,24 +46,29 @@
     },
     "EAApi Module": {
         "prefix": [
-            "module","m"
+            "module",
+            "m"
         ],
         "body": [
-            "import { ConfigModule } from \"@nestjs/config\";",
             "import { Module } from \"@nestjs/common/decorators\";",
             "import { DatabaseModule } from \"@eaapi/modules/core/database/database.module\";",
-            "import { getRepositories } from \"@eaapi/modules/core/database/repository.provider\";",
-            "import { sortControllers } from \"@eaapi/helpers/module.helper\";",
+            "import { getServices } from \"@eaapi/providers/service.provider\";",
+            "import { getControllers } from \"@eaapi/providers/controller.provider\";",
+            "import { LogModule } from \"@eaapi/modules/core/log/log.module\";",
+            "import { getRepositories } from \"@eaapi/providers/repository.provider\";",
+            "const entities = [",
+            "    ${1:EntityName},",
+            "    ${2}",
+            "]",
             "@Module({",
             "    imports: [",
             "      DatabaseModule,",
+            "      LogModule",
             "    ],",
-            "    controllers: sortControllers([",
-            "      ${1:EntityName}Controller,",
-            "    ]),",
+            "    controllers: getControllers(entities, [], \"${1:EntityName}\"),",
             "    providers: [",
-            "      ...getRepositories([${1:EntityName}]),",
-            "      ${1:EntityName}Service,",
+            "      ...getRepositories([]),",
+            "      ...getServices(entities, []),",
             "    ],",
             "    exports: [],",
             "  })",
@@ -69,10 +76,10 @@
         ],
         "description": "A EAApi Module"
     },
-    
     "EAApi Entity Extends BaseModel ": {
         "prefix": [
-            "BaseModel","bm"
+            "BaseModel",
+            "bm"
         ],
         "body": [
             "import { Column, Entity, ManyToOne } from \"typeorm\";",
@@ -85,7 +92,10 @@
     },
     "EAApi Entity Extends Type ": {
         "prefix": [
-            "Type", "TypeModel", "tm", "t"
+            "Type",
+            "TypeModel",
+            "tm",
+            "t"
         ],
         "body": [
             "import { Column, Entity, ManyToOne } from \"typeorm\";",
@@ -96,4 +106,38 @@
         ],
         "description": "A EAApi Entity Extends BaseModel"
     },
+    "EAApi Many To One": {
+        "prefix": "manytoone",
+        "body": [
+            "@ManyToOne(() => $1, x => x.$2s)",
+            "${1/(.)(.*)/${1:/downcase}$2/}: $1;"
+        ],
+        "description": "Create a ManyToOne relationship with dynamic entity"
+    },
+    "EAApi One To One": {
+        "prefix": "onetoone",
+        "body": [
+            "@OneToOne(() => $1, x => x.$2)",
+            "${1/(.)(.*)/${1:/downcase}$2/}: $1;"
+            //"${1/(.*)${1:/downcase}$2/(Entity)/}: $1;"
+        ],
+        "description": "Create a OneToOne relationship with dynamic entity"
+    },
+    "EAApi One To Many": {
+        "prefix": "onetomany",
+        "body": [
+            "@OneToMany(() => $1, x => x.$2)",
+            "${1/(.)(.*)/${1:/downcase}$2/}s: $1[];"
+        ],
+        "description": "Create a OneToMany relationship with dynamic entity"
+    },
+    
+    "EAApi Column": {
+        "prefix": "column",
+        "body": [
+            "@Column()",
+            "$1: $2;"
+        ],
+        "description": "Create a Column"
+    }
 }
